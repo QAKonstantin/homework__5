@@ -1,7 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from conftest import wait_title, assert_element
+from BasePage import assert_element, wait_title, present_element
 
 
 def test_check_laptops(browser):
@@ -11,5 +8,5 @@ def test_check_laptops(browser):
     assert_element("[class='fa fa-th']", browser)
     assert_element("[class='img-responsive']", browser)
     assert_element("[class='breadcrumb']", browser)
-    WebDriverWait(browser, 2).until(EC.text_to_be_present_in_element((By.ID, "content"), "Refine Search"))
-    WebDriverWait(browser, 2).until(EC.text_to_be_present_in_element((By.ID, "logo"), "Your Store"))
+    present_element("#content", "Refine Search", browser)
+    present_element("#logo1", "Your Store", browser)

@@ -1,7 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from conftest import wait_title, assert_element
+from BasePage import assert_element, wait_title, present_element
 
 
 def test_check_monitors(browser):
@@ -12,5 +9,5 @@ def test_check_monitors(browser):
     assert_element("[id='input-quantity']", browser)
     assert_element("[id='cart-total']", browser)
     assert_element("[class='navbar-header']", browser)
-    WebDriverWait(browser, 2).until(EC.text_to_be_present_in_element((By.ID, "content"), "Related Products"))
-    WebDriverWait(browser, 2).until(EC.text_to_be_present_in_element((By.ID, "logo"), "Your Store"))
+    present_element("#content", "Related Products", browser)
+    present_element("#logo", "Your Store", browser)

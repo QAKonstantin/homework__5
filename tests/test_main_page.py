@@ -1,7 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from conftest import wait_title, assert_element
+from BasePage import assert_element, wait_title, present_element
 
 
 def test_check_main_page(browser):
@@ -11,7 +8,5 @@ def test_check_main_page(browser):
     assert_element("[id='search']", browser)
     assert_element("[class='row']", browser)
     assert_element("[class='collapse navbar-collapse navbar-ex1-collapse']", browser)
-    WebDriverWait(browser, 3).until(
-        EC.text_to_be_present_in_element((By.ID, "logo"), "Your Store"))
-    WebDriverWait(browser, 3).until(
-        EC.text_to_be_present_in_element((By.ID, "cart-total"), "0 item(s) - $0.00"))
+    present_element("#logo", "Your Store", browser)
+    present_element("#cart-total", "0 item(s) - $0.00", browser)

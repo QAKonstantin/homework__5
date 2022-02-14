@@ -1,7 +1,4 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from conftest import wait_title, assert_element
+from BasePage import assert_element, wait_title, present_element
 
 
 def test_check_card_nikon_d300(browser):
@@ -12,9 +9,6 @@ def test_check_card_nikon_d300(browser):
     assert_element("[id='search']", browser)
     assert_element("[id='input-quantity']", browser)
     assert_element("[class='breadcrumb']", browser)
-    WebDriverWait(browser, 3).until(
-        EC.text_to_be_present_in_element((By.ID, "logo"), "Your Store"))
-    WebDriverWait(browser, 3).until(
-        EC.text_to_be_present_in_element((By.CLASS_NAME, "active"), "Description"))
-    WebDriverWait(browser, 3).until(
-        EC.text_to_be_present_in_element((By.ID, "button-cart"), "Add to Cart"))
+    present_element("#logo", "Your Store", browser)
+    present_element(".active", "Description", browser)
+    present_element("#button-cart", "Add to Cart", browser)
